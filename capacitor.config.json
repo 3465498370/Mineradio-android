@@ -1,0 +1,15 @@
+{
+  "appId": "com.mineradio.app",
+  "appName": "Mineradio",
+  "webDir": "server/public",
+  "bundledWebRuntime": false,
+  "server": {
+    "url": "https://mineradio-production.up.railway.app",
+    "cleartext": false
+  },
+  "android": {
+    "allowMixedContent": false,
+    "captureInput": true,
+    "webContentsDebuggingEnabled": false
+  }
+}

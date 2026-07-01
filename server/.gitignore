@@ -1,0 +1,5 @@
+node_modules/
+.cookie
+.qq-cookie
+.kugou-cookie
+.env

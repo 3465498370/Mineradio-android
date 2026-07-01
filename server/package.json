@@ -1,0 +1,17 @@
+{
+  "name": "mineradio-server",
+  "version": "1.2.0",
+  "description": "Mineradio backend server for Railway deployment",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "NeteaseCloudMusicApi": "^4.32.0",
+    "qrcode": "^1.5.4",
+    "mpg123-decoder": "^1.0.3"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

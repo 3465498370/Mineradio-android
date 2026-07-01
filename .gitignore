@@ -1,0 +1,12 @@
+node_modules/
+server/node_modules/
+android/.gradle/
+android/build/
+android/app/build/
+android/captures/
+*.apk
+*.aab
+.cookie
+.qq-cookie
+.kugou-cookie
+.env
