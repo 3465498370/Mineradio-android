@@ -2,9 +2,9 @@
   "name": "mineradio-server",
   "version": "1.2.0",
   "description": "Mineradio backend server for Railway deployment",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node index.js"
   },
   "dependencies": {
     "NeteaseCloudMusicApi": "^4.32.0",
