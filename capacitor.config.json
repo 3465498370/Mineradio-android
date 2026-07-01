@@ -4,7 +4,7 @@
   "webDir": "server/public",
   "bundledWebRuntime": false,
   "server": {
-    "url": "https://mineradio-production.up.railway.app",
+    "url": "https://mineradio-android-production-f88b.up.railway.app",
     "cleartext": false
   },
   "android": {
