@@ -1,27 +1,37 @@
-/* Mineradio Mobile — Fullscreen + Touch fixes */
+/* Mineradio Mobile — Fullscreen + Scale-to-fit */
+:root {
+  --desktop-width: 1920;
+  --desktop-height: 1080;
+}
+
 html, body {
   margin: 0 !important;
   padding: 0 !important;
   border: none !important;
-  width: 100vw !important;
-  height: 100vh !important;
+  background: #0a0a0f !important;
   overflow: hidden !important;
+  width: 100vw;
+  height: 100vh;
   position: fixed;
   top: 0;
   left: 0;
-  background: #0a0a0f;
   touch-action: manipulation;
   -webkit-user-select: none;
-  -webkit-touch-callout: none;
 }
 
-/* Remove any desktop padding injected by preload */
+/* Scale entire page to fit mobile landscape viewport */
+body {
+  transform-origin: top left;
+  transform: scale(min(calc(100vw / var(--desktop-width) * 1px), calc(100vh / var(--desktop-height) * 1px)));
+}
+
+/* Remove desktop shell padding */
 .desktop-shell, .desktop-shell-root {
   padding: 0 !important;
   margin: 0 !important;
 }
 
-/* Hide desktop-only elements */
+/* Hide desktop chrome */
 #desktop-titlebar,
 .desktop-titlebar-btn,
 .desktop-titlebar-drag,
@@ -30,49 +40,32 @@ html, body {
   display: none !important;
 }
 
-/* Full-bleed content areas */
-#search-area {
-  left: 8px !important;
-  right: 8px !important;
-  top: 8px !important;
-}
-
-#top-right {
-  top: 8px !important;
-  right: 8px !important;
-}
-
-/* Touch: larger tap targets */
+/* Touch-friendly tap targets */
 button, .modal-btn, .song-action-btn,
-.home-feature-card, .home-card, .pl-card {
+.home-feature-card, .home-card, .pl-card,
+.queue-item, .search-result {
   min-height: 40px;
   min-width: 40px;
 }
 
-/* Scrollable panes - enable touch scroll */
-#search-results,
-#pl-list,
-#queue-pane,
-#pl-pane,
-#podcast-pane,
-.mini-queue-scroll {
+/* Scrollable panes */
+#search-results, #pl-list, #queue-pane, #pl-pane, #podcast-pane,
+#playlist-panel, .mini-queue-scroll, #queue-list {
   overflow-y: auto !important;
-  overflow-x: hidden !important;
   -webkit-overflow-scrolling: touch !important;
-  overscroll-behavior: contain;
 }
 
-/* Bottom bar touch */
+/* Bottom bar spacing */
 #bottom-bar {
   padding-bottom: env(safe-area-inset-bottom, 4px);
 }
 
-/* Modal - wider on mobile landscape */
+/* Wider modals on landscape */
 .modal-mask .modal {
-  max-width: 70vw !important;
+  max-width: 50vw !important;
 }
 
-/* Prevent zoom */
+/* Prevent zoom on inputs */
 input, textarea {
   font-size: 16px !important;
 }
