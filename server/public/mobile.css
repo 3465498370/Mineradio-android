@@ -1,39 +1,78 @@
-/* Mineradio Mobile — Touch & Landscape fixes */
-body {
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
+/* Mineradio Mobile — Fullscreen + Touch fixes */
+html, body {
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  overflow: hidden !important;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #0a0a0f;
   touch-action: manipulation;
   -webkit-user-select: none;
   -webkit-touch-callout: none;
+}
+
+/* Remove any desktop padding injected by preload */
+.desktop-shell, .desktop-shell-root {
+  padding: 0 !important;
+  margin: 0 !important;
 }
 
 /* Hide desktop-only elements */
 #desktop-titlebar,
 .desktop-titlebar-btn,
 .desktop-titlebar-drag,
-#free-camera-hint {
+#free-camera-hint,
+#home-btn {
   display: none !important;
 }
 
-/* Touch-friendly: larger tap targets */
-button, .modal-btn, .song-action-btn, .home-feature-card, .home-card, .pl-card, .queue-item {
-  min-height: 36px;
+/* Full-bleed content areas */
+#search-area {
+  left: 8px !important;
+  right: 8px !important;
+  top: 8px !important;
 }
 
-/* Smooth scrolling */
-#search-results, #pl-list, #queue-pane, #pl-pane {
-  -webkit-overflow-scrolling: touch;
+#top-right {
+  top: 8px !important;
+  right: 8px !important;
 }
 
-/* Prevent zoom on inputs */
+/* Touch: larger tap targets */
+button, .modal-btn, .song-action-btn,
+.home-feature-card, .home-card, .pl-card {
+  min-height: 40px;
+  min-width: 40px;
+}
+
+/* Scrollable panes - enable touch scroll */
+#search-results,
+#pl-list,
+#queue-pane,
+#pl-pane,
+#podcast-pane,
+.mini-queue-scroll {
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  -webkit-overflow-scrolling: touch !important;
+  overscroll-behavior: contain;
+}
+
+/* Bottom bar touch */
+#bottom-bar {
+  padding-bottom: env(safe-area-inset-bottom, 4px);
+}
+
+/* Modal - wider on mobile landscape */
+.modal-mask .modal {
+  max-width: 70vw !important;
+}
+
+/* Prevent zoom */
 input, textarea {
   font-size: 16px !important;
-}
-
-/* Fix landscape white edges */
-html, body {
-  margin: 0;
-  padding: 0;
-  background: #0a0a0f;
 }
