@@ -11065,6 +11065,7 @@
   </style>
   <meta name="screen-orientation" content="landscape">
   <meta name="x5-orientation" content="landscape">
+  <link rel="stylesheet" href="mobile.css">
   <script src="mobile-cookie.js" defer></script>
 </head>
 
@@ -33601,10 +33602,8 @@ void main(){ vec4 t = texture2D(uDotTex, gl_PointCoord); if (t.a < 0.02) discard
       var statusEl = document.getElementById('qr-status');
       var api = window.desktopWindow;
       if (!api || !api.isDesktop || typeof api.openQQMusicLogin !== 'function') {
-        qqManualCookieOpen = true;
-        updateLoginProviderUi();
-        if (statusEl) { statusEl.textContent = '当前环境不支持自动网页登录，可先使用手动导入。'; statusEl.className = 'fail'; }
-        return;
+        // Mobile/WebView: fall back to QR code login
+        return refreshQr();
       }
 
       qqWebLoginBusy = true;

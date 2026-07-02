@@ -1,0 +1,39 @@
+/* Mineradio Mobile — Touch & Landscape fixes */
+body {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  touch-action: manipulation;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+}
+
+/* Hide desktop-only elements */
+#desktop-titlebar,
+.desktop-titlebar-btn,
+.desktop-titlebar-drag,
+#free-camera-hint {
+  display: none !important;
+}
+
+/* Touch-friendly: larger tap targets */
+button, .modal-btn, .song-action-btn, .home-feature-card, .home-card, .pl-card, .queue-item {
+  min-height: 36px;
+}
+
+/* Smooth scrolling */
+#search-results, #pl-list, #queue-pane, #pl-pane {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Prevent zoom on inputs */
+input, textarea {
+  font-size: 16px !important;
+}
+
+/* Fix landscape white edges */
+html, body {
+  margin: 0;
+  padding: 0;
+  background: #0a0a0f;
+}
