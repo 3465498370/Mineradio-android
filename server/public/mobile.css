@@ -1,31 +1,19 @@
-/* Mineradio Mobile — Fullscreen + Scale-to-fit */
-:root {
-  --desktop-width: 1920;
-  --desktop-height: 1080;
-}
-
+/* Mineradio Mobile — Viewport-scaled layout */
 html, body {
   margin: 0 !important;
   padding: 0 !important;
-  border: none !important;
   background: #0a0a0f !important;
-  overflow: hidden !important;
-  width: 100vw;
-  height: 100vh;
-  position: fixed;
+  overflow: visible !important;
+  width: 100%;
+  min-height: 100%;
+  position: relative;
   top: 0;
   left: 0;
   touch-action: manipulation;
   -webkit-user-select: none;
 }
 
-/* Scale entire page to fit mobile landscape viewport */
-body {
-  transform-origin: top left;
-  transform: scale(min(calc(100vw / var(--desktop-width) * 1px), calc(100vh / var(--desktop-height) * 1px)));
-}
-
-/* Remove desktop shell padding */
+/* Remove desktop padding */
 .desktop-shell, .desktop-shell-root {
   padding: 0 !important;
   margin: 0 !important;
@@ -40,7 +28,14 @@ body {
   display: none !important;
 }
 
-/* Touch-friendly tap targets */
+/* Allow scrolling in content panes */
+#search-results, #pl-list, #queue-pane, #pl-pane, #podcast-pane,
+#playlist-panel, #queue-list, .mini-queue-scroll {
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+}
+
+/* Touch tap targets */
 button, .modal-btn, .song-action-btn,
 .home-feature-card, .home-card, .pl-card,
 .queue-item, .search-result {
@@ -48,24 +43,7 @@ button, .modal-btn, .song-action-btn,
   min-width: 40px;
 }
 
-/* Scrollable panes */
-#search-results, #pl-list, #queue-pane, #pl-pane, #podcast-pane,
-#playlist-panel, .mini-queue-scroll, #queue-list {
-  overflow-y: auto !important;
-  -webkit-overflow-scrolling: touch !important;
-}
-
-/* Bottom bar spacing */
-#bottom-bar {
-  padding-bottom: env(safe-area-inset-bottom, 4px);
-}
-
-/* Wider modals on landscape */
-.modal-mask .modal {
-  max-width: 50vw !important;
-}
-
-/* Prevent zoom on inputs */
+/* Prevent iOS zoom */
 input, textarea {
   font-size: 16px !important;
 }
