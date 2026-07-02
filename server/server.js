@@ -4293,9 +4293,30 @@ async function getLoginInfo() {
 // ====================================================================
 //  HTTP Server
 // ====================================================================
+// Multi-user cookie export endpoint
+function handleMobileCookieExport(req, res, url) {
+  var provider = url.searchParams.get('provider') || 'netease';
+  if (provider === 'qq') { sendJSON(res, { provider: 'qq', cookie: qqCookie }); }
+  else if (provider === 'kugou') { sendJSON(res, { provider: 'kugou', cookie: kgCookie }); }
+  else { sendJSON(res, { provider: 'netease', cookie: userCookie }); }
+}
+
 const server = http.createServer(async (req, res) => {
+  // Multi-user: per-request cookie override from header (mobile clients)
+  var _savedNetease = userCookie, _savedQQ = qqCookie, _savedKg = kgCookie;
+  var _headerNE = req.headers['x-cookie-netease'];
+  var _headerQQ = req.headers['x-cookie-qq'];
+  var _headerKG = req.headers['x-cookie-kg'];
+  if (typeof _headerNE === 'string') userCookie = _headerNE;
+  if (typeof _headerQQ === 'string') qqCookie = _headerQQ;
+  if (typeof _headerKG === 'string') kgCookie = _headerKG;
+  res.on('finish', function () { userCookie = _savedNetease; qqCookie = _savedQQ; kgCookie = _savedKg; });
+  res.on('close', function () { userCookie = _savedNetease; qqCookie = _savedQQ; kgCookie = _savedKg; });
+
   const url = new URL(req.url, 'http://localhost:' + PORT);
   const pn = url.pathname;
+  if (pn === '/api/mobile/cookie-export') { handleMobileCookieExport(req, res, url); return; }
+
   if (pn === '/api/app/version') {
     sendJSON(res, {
       name: APP_PACKAGE.name || 'mineradio',
